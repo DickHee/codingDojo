@@ -23,25 +23,10 @@ def TimeToMilliSeconds(days,hours,minutes,seconds):
 print(TimeToMilliSeconds(20,20,100,100))
 
 
-def genTriangle():
-    return([(random.randint(-50,50),random.randint(-50,50)),(random.randint(-50,50),random.randint(-50,50)),(random.randint(-50,50),random.randint(-50,50))])
-
 def PointDistance(pointA,pointB):
     xDiff = abs(pointB[0]-pointA[0])
     yDiff = abs(pointB[1]-pointA[1])
     return math.sqrt( xDiff**2 + yDiff**2 )
-
-def CircumferenceOfTriangle(pointList):    
-    circumference = 0
-    for i in range(0,len(pointList)-1):
-        circumference += PointDistance(pointList[i],pointList[i+1])
-    
-    circumference += PointDistance(pointList[len(pointList)-1],pointList[0])
-
-    return circumference
-pointList = [(0,0),(4,0),(0,3)]
-print(CircumferenceOfTriangle(pointList))
-
 
 def AreaOfATriangle(pointList):
     sideA = PointDistance(pointList[0], pointList[1])
@@ -55,8 +40,6 @@ def AreaOfATriangle(pointList):
 pointList = [(0,0),(4,0),(0,3)]
 print(AreaOfATriangle(pointList))
 
-
-
 def AreaOfATriangle2(pointList):
     sideList = []
     sideList.append(PointDistance(pointList[0], pointList[1]))
@@ -66,8 +49,55 @@ def AreaOfATriangle2(pointList):
     sideList.sort(reverse=True)
 
 
-pointList = [(0,0),(4,0),(0,3)]
-print(AreaOfATriangle(pointList))
+# pointList = [(0,0),(4,0),(0,3)]
+# print(AreaOfATriangle(pointList))
+
+def CircumferenceOfTriangle(pointList):    
+    circumference = 0
+    for i in range(0,len(pointList)-1):
+        circumference += PointDistance(pointList[i],pointList[i+1])
+
+    circumference += PointDistance(pointList[len(pointList)-1],pointList[0])
+
+    return circumference
+# pointList = [(0,0),(4,0),(0,3)]
+# print(CircumferenceOfTriangle(pointList))
+
+def genTriangle():
+    return([(random.randint(-50,50),random.randint(-50,50)),(random.randint(-50,50),random.randint(-50,50)),(random.randint(-50,50),random.randint(-50,50))])
+
+def genListOfTriangles(n):
+    listOfTriangles = []
+    for i in range(0,n):
+        listOfTriangles.append(genTriangle())
+    
+    return listOfTriangles
+
+listOfTriangles = genListOfTriangles(500)
+
+def printListOfTriangles(listOfTriangles):
+    for triangle in listOfTriangles:
+        for vx, vertex in enumerate(triangle):
+            for cx,coord in enumerate(vertex):
+
+                if vx == 0 and cx == 0:
+                    print(coord,end = "")
+                else:
+                    print(","+str(coord),end = "")
+        print("")
+
+
+def largestTriangleCircumference(listOfTriangles):
+    largestCircumference = 0
+    for i, triangle in enumerate(listOfTriangles):
+        triangleCircumference = CircumferenceOfTriangle(triangle)
+        if triangleCircumference > largestCircumference:
+            largestCircumference = triangleCircumference
+    return largestCircumference
+
+
+printListOfTriangles(listOfTriangles)
+print(largestTriangleCircumference(listOfTriangles))
 
 
 
