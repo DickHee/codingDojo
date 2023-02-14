@@ -1,0 +1,37 @@
+title:
+Circumference of a Triangle
+
+
+
+description:
+Given a list of triangles in the 2d plane 
+Return the size of the largest triangle circumference,
+round to nearest integer
+
+The list of triangles is given in the following format
+t1v1x,t1v1y,t1v2x,t1v2y,t1v3x,t1v3y
+t2v1x,t2v1y,t2v2x,t2v2y,t2v3x,t2v3y
+t3v1x,t3v1y,t3v2x,t3v2y,t3v3x,t3v3y
+...
+
+where t1v1x = x-coordinate of vertex 1 of triangle 1
+	  t1v1y = y-coordinate of vertex 1 of triangle 1
+where t1v2x = x-coordinate of vertex 2 of triangle 1
+	  t1v2y = y-coordinate of vertex 2 of triangle 1
+
+and t2v1x = x-coordinate of vertex 1 of triangle 2
+	t2v1y = y-coordinate of vertex 1 of triangle 2
+
+etc.
+
+
+answer:
+283
+
+
+
+points:
+20
+
+
+input: ./circumferenceTriangle_dat.txt
